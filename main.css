@@ -1,0 +1,138 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h2 {
+    margin-top: 30px;
+}
+
+#generate {
+    width: 200px;
+    height: 30px;
+    margin: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: rgb(24, 0, 109);
+    color: white;
+    border-radius: 20px;
+    box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.75);
+    border-color: white;
+}
+
+#generate:active {
+    vertical-align: top;
+    padding: 8px 13px 6px;
+}
+
+.color-palette {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.color-card {
+    width: 200px;
+    min-width: 80px;
+    height: 300px;
+    background-color: aqua;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 20px;
+    box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.75);
+    transition: transform 0.3s;
+}
+
+.save-color {
+    margin-top: auto;
+    background-image: url(save.png);
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.color-card:hover .save-color {
+    opacity: 1;
+    transition: 0.5s;
+}
+
+.save-color.saved {
+    background-image: url(checkmark.png);
+    opacity: 1;
+}
+
+.color-code {
+    position: absolute;
+    top: 80%;
+    width: 100%;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.75);
+    color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+.copy-color {
+   margin-top: auto;
+   margin-bottom: 10px;
+   width: 50%;
+   height: 20px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: rgba(255, 255, 255, 0.5);
+   border-radius: 5px;
+   font-weight: bold;
+   text-transform: uppercase;
+   cursor: pointer;
+}
+
+.copy-all-colors {
+    width: 150px;
+    height: 20px;
+    margin: 10px;
+    cursor: pointer;
+    background-color: rgb(24, 0, 109);
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px 3px rgba(0,0,0,0.75);
+    border-color: white;
+}
+
+.copy-status {
+    font-weight: bold;
+    color: rgb(24, 0, 109);
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.refresh-btn {
+    width: 150px;
+    height: 40px;
+    margin: 20px;
+    cursor: pointer;
+    background-color: rgb(81, 24, 99);
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px 3px rgba(0,0,0,0.75);
+    border-color: white;
+}
