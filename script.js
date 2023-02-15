@@ -1,57 +1,58 @@
-const generateBtn = document.getElementById('generate');
-const colorCards = document.querySelectorAll('.color-card');
+const generateBtn = document.getElementById('generate-colors-btn');
+const paletteItems = document.querySelectorAll('.color-palette-item');
 const saveBtns = document.querySelectorAll('.save-color');
 const copyBtns = document.querySelectorAll('.copy-color');
-const copyAllBtn = document.querySelector('.copy-all-colors');
-const copyStatus = document.querySelector('.copy-status');
+const copyAllBtn = document.querySelector('.copy-all-colors-btn');
+const copyStatus = document.querySelector('.copy-colors-status');
 const refreshBtn = document.querySelector('.refresh-btn');
 
 // on document load, start generateColors function and create color palette
 document.addEventListener("DOMContentLoaded", ()=> {
-    colorCards.forEach(color => generateColors(color));
+    generateColors();
 });
+
+// Generate New Colors Button
+generateBtn.addEventListener('click', ()=> {
+    generateColors();
+});
+
+// generateColors function
+function generateColors(item) {
+    paletteItems.forEach(item => {
+        if(!item.querySelector('.save-color').classList.contains('saved')) {
+            const randomColor = Math.floor(Math.random()*16777215).toString(16);
+            const hexColorCode = `#${randomColor}`;
+            item.style.backgroundColor = hexColorCode;
+            item.querySelector('.color-code').textContent = hexColorCode;
+        }
+    })
+}
 
 // Save Color Button
 saveBtns.forEach(btn => btn.addEventListener('click', ()=> {
     btn.classList.toggle('saved');
 }));
 
-// Generate New Colors Button
-generateBtn.addEventListener('click', ()=> {
-    colorCards.forEach(colorCard => generateColors(colorCard))
-});
-
-// generateColors function
-function generateColors(colorCard) {
-    let colorSaved = colorCard.querySelector('.save-color');
-    if(!colorSaved.classList.contains('saved')) {
-        let randomColor = Math.floor(Math.random()*16777215).toString(16);
-        let hexColorCode = '#' + randomColor;
-        colorCard.style.backgroundColor = hexColorCode;
-        colorCard.querySelector('.color-code').textContent = hexColorCode;
-    }
-}
-
 // Copy Button
 copyBtns.forEach(btn => btn.addEventListener('click', ()=> {
-    let colorCode = btn.previousElementSibling.textContent;
+    const colorCode = btn.previousElementSibling.textContent;
     navigator.clipboard.writeText(colorCode);
     btn.textContent = 'Copied';
     setTimeout(() => {
         btn.textContent = 'Copy';
-      }, '2000')
+      }, 2000)
 }));
 
 // Copy All Colors Button
 copyAllBtn.addEventListener('click', ()=>{
-    let colorCodes = document.querySelectorAll('.color-code');
+    const colorCodes = document.querySelectorAll('.color-code');
     let colors = [];
     colorCodes.forEach(code => colors.push(code.textContent));
     navigator.clipboard.writeText(colors.join(', '));
     copyStatus.style.opacity = '1';
     setTimeout(() => {
         copyStatus.style.opacity = '0';
-      }, '3000')
+      }, 3000)
 });
 
 // Refresh Page
